@@ -1,0 +1,55 @@
+@model thebeltexam.Models.Activity;
+<h1>
+    @Model.Title
+    @{
+        if(@ViewBag.UserId == @Model.CoordinatorId)
+        {
+            <a class="btn btn-primary" href="/delete/@Model.ActivityId">Delete</a>
+        } 
+        else
+        {
+            var count = 0;
+            foreach (var p in @Model.Participants)
+            {
+                if (@ViewBag.UserId == p.UserId)
+                {
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                <a class="btn btn-success" href="/join/@Model.ActivityId">Join</a>
+            }
+            else
+            {
+                <a class="btn btn-danger" href="/join/@Model.ActivityId">Leave</a>
+            }
+        }
+    }
+</h1>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th width="20%">Event Coordinator</th>
+            <td>@Model.Coordinator.FirstName @Model.Coordinator.LastName</td>
+        </tr>
+        <tr>
+            <th width="20%">Description</th>
+            <td>@Model.Description</td>
+        </tr>
+        <tr>
+            <th width="20%">Participants</th>
+            <td>
+                <ul>
+                @{
+                    foreach (var p in @Model.Participants)
+                    {
+                    <li>@p.User.FirstName</li>
+                    }
+                }
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>

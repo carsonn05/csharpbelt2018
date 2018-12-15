@@ -1,0 +1,61 @@
+@using thebeltexam.Models;
+@model List<Activity>;
+<center>
+    <h1>Welcome to the Activity Center</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Activity</th>
+                <th scope="col">Date and Time</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Event Coordinator</th>
+                <th scope="col">Participants</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @{
+            foreach (Activity activity in @Model)
+            {
+            <tr>
+                <td scope="col"><a href="/activity/@activity.ActivityId">@activity.Title</a></td>
+                <td scope="col">@activity.Date.ToString("MM/dd/yyyy") | @activity.Time.ToString("h:mm tt")</td>
+                <td scope="col">@activity.Duration @activity.DurationType</td>
+                <td scope="col">@activity.Coordinator.FirstName @activity.Coordinator.LastName</td>
+                <td scope="col">@activity.Participants.Count</td>
+                <td scope="col">
+                        <a class="btn btn-info" href="/activity/@activity.ActivityId">Details</a>
+                    @{
+                        if(@ViewBag.UserId == @activity.CoordinatorId)
+                        {
+                            <a class="btn btn-primary" href="/delete/@activity.ActivityId">Delete</a>
+                        } 
+                        else
+                        {
+                            var count = 0;
+                            foreach (var i in @activity.Participants)
+                            {
+                                if (@ViewBag.UserId == i.UserId)
+                                {
+                                    count++;
+                                }
+                            }
+                            if (count == 0)
+                            {
+                                <a class="btn btn-success" href="/join/@activity.ActivityId">Join</a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-danger" href="/join/@activity.ActivityId">Leave</a>
+                            }
+                        }
+                    }  
+                </td>
+            </tr>
+            }
+        }
+        </tbody>
+    </table>
+     <a class="btn btn-primary"  href="/logout">Logout</a>
+    <a class="btn btn-primary"  href="/create">Add a New Activity!</a>
+</center>

@@ -1,0 +1,43 @@
+@model thebeltexam.Models.Activity;
+<center>
+    <h1>Create an Activity</h1>
+    <div class="row">
+        <form asp-action="CreateActivity" asp-controller="Activity" method="POST">
+            <div class="form-group col-md-6">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" style='width: 350px' placeholder='Enter the time of the activity'>
+                <span asp-validation-for="Title"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Time" class="control-label"></label>
+                <input asp-for="Time" class="form-control" type="time" style='width: 350px' placeholder='Enter the time of the activity'>
+                <span asp-validation-for="Time"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" type="date" style='width: 350px' placeholder='Enter the time of the activity'>
+                <span asp-validation-for="Date"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Duration" class="control-label"></label>
+                <input asp-for="Duration" class="form-control" type="Number" min="0">
+                <span asp-validation-for="Duration"></span>
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="DurationType" class="control-label">Days/Hours/Minutes:</label>
+                <select class="form-control" asp-for="DurationType" style='width: 350px' placeholder='Enter the time of the activity'>
+                    <option value = "Days">Days</option>
+                    <option value = "Hours">Hours</option>
+                    <option value = "Minutes">Minutes</option>
+                </select>
+                <span asp-validation-for="DurationType"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea class="form-control" asp-for="Description" rows="4"></textarea>
+                <span asp-validation-for="Description"></span>
+            </div>
+            <button type='submit' class='btn btn-primary'>Create Activity</button>
+        </form>
+    </div>
+</center>

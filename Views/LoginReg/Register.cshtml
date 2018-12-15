@@ -1,0 +1,32 @@
+@model thebeltexam.Models.User;
+<center>
+    <h1>Register:</h1>
+    <form asp-action="Register" asp-controller="LoginReg" method="POST">
+        <div class="form-group">
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" class="form-control" style='width: 350px' placeholder='Enter your first name'>
+            <span asp-validation-for="FirstName"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" style='width: 350px' placeholder='Enter your last name'>
+            <span asp-validation-for="LastName"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" style='width: 350px' placeholder='Enter a valid email address'>
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" class="form-control" style='width: 350px' placeholder='Enter a secure password'>
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Confirm" class="control-label"></label>
+            <input asp-for="Confirm" class="form-control" style='width: 350px' placeholder='Confirm your password'>
+            <span asp-validation-for="Confirm"></span>
+        </div>
+        <button type='submit' class='btn btn-primary'>Register</button>
+    </form>
+</center>
